@@ -1,5 +1,5 @@
 package models;
-
+import models.product.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,12 +38,12 @@ public class Database {
     public User getUserByEmail(String email){
         for(int i = 0; i < users.size(); i++){
             if(users.get(i).getEmail().equals(email)){
-                return  users.get(i);
+                return users.get(i);
             }
         }
         return null;
     }
-    public void createCap(String name, int id, float originalPrice, float currentPrice, CapType type, String[] colors){
+    public void createCap(String name, int id, float originalPrice, float currentPrice, Product.CapType type, String[] colors){
         if(getProductByID(id) != null){
             Product a = new Product(name, id, originalPrice, currentPrice, type, colors);
         }else{
@@ -56,7 +56,7 @@ public class Database {
     public Product getProductByID(int id){
         for(int i = 0; i < products.size(); i++){
             if(products.get(i).getId() == id){
-                return Product;
+                return products.get(i);
             }
         }
         return null;

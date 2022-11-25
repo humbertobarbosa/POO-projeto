@@ -1,4 +1,5 @@
 package models;
+import models.product.*;
 
 import java.util.Date;
 
@@ -12,7 +13,7 @@ public class Admin extends User{
     public void removeCap(int id){
         Database.getInstance().removeCap(id);
     }
-    public void createCap(String name, int id, float originalPrice, float currentPrice, CapType type, String[] colors){
+    public void createCap(String name, int id, float originalPrice, float currentPrice, Product.CapType type, String[] colors){
         Database.getInstance().createCap(name, id, originalPrice, currentPrice, type, colors);
     }
     public void promoteUser(String email, String accessKey){
