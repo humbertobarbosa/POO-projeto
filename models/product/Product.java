@@ -43,4 +43,8 @@ public class Product {
         return id;
     }
     
+    public float getCurrentPrince() {
+        return currentPrice;
+    }
+
 }
