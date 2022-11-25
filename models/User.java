@@ -19,4 +19,20 @@ public abstract class User {
     public void changeName(String name){
         this.name = name;
     }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }
