@@ -20,4 +20,7 @@ public class Admin extends User{
         Database.getInstance().promoteUser(email, accessKey);
     }
 
+    public String getAccessKey() {
+        return accessKey;
+    }
 }

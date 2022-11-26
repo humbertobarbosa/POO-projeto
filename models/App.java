@@ -1,5 +1,8 @@
 package models;
 
+import models.product.Product;
+
+import java.util.Date;
 import java.util.Scanner;
 
 public class App {
@@ -34,11 +37,62 @@ public class App {
                             System.out.println("[0] - Sair");
                             option = input.nextInt();
                             if(option == 1){
-
+                                System.out.println("----Criar Novo Boné----");
+                                System.out.println("Digite o Nome do boné");
+                                String capName = input.nextLine();
+                                System.out.println("Digite o ID do boné");
+                                int capId = input.nextInt();
+                                if(Database.getInstance().getProductByID(capId) != null){
+                                    System.out.println("um boné com este id já esta cadastrado");
+                                }else{
+                                    System.out.println("Digite o preço original do boné");
+                                    float originalPrice = input.nextFloat();
+                                    System.out.println("Digite o preço atual do boné");
+                                    float currentPrice = input.nextFloat();
+                                    System.out.println("Digite o tipo do boné entre:");
+                                    System.out.println("TRUCKER");
+                                    System.out.println("FLAT_BRIM");
+                                    System.out.println("CURVED_BRIM");
+                                    System.out.println("SNAPBACK");
+                                    System.out.println("DAD_HAT");
+                                    System.out.println("PANEL");
+                                    System.out.println("STRAPBACK");
+                                    Product.CapType type = Product.CapType.valueOf(input.nextLine().toUpperCase());
+                                    System.out.println("Quantas cores estão disponíveis para este boné?");
+                                    int colorsAmount = input.nextInt();
+                                    String[] colors = new String[colorsAmount];
+                                    for(int i = 0; i < colorsAmount; i++){
+                                        System.out.println("Digite a cor");
+                                        colors[i] = input.nextLine();
+                                    }
+                                    System.out.println("Digite a sua chave de acesso");
+                                    String accessKey = input.nextLine();
+                                    if(accessKey.equals(((Admin) a).getAccessKey())){
+                                        ((Admin) a).createCap(capName, capId, originalPrice, currentPrice, type, colors);
+                                    }
+                                }
                             }else if(option == 2){
-
+                                System.out.println("Digite o ID do boné a ser removido");
+                                int capId = input.nextInt();
+                                System.out.println("Digite a sua chave de acesso");
+                                String accessKey = input.nextLine();
+                                if(accessKey.equals(((Admin) a).getAccessKey())){
+                                    ((Admin) a).removeCap(capId);
+                                }else{
+                                    System.out.println("Chave de acesso inválida");
+                                }
                             }else if(option == 3){
-
+                                System.out.println("Digite o email do usuário a ser promovido");
+                                email = input.nextLine();
+                                System.out.println("Digite a chave de acesso para este usuário");
+                                String userAccessKey = input.nextLine();
+                                System.out.println("Digite a sua chave de acesso");
+                                String accessKey = input.nextLine();
+                                if(accessKey.equals(((Admin) a).getAccessKey())){
+                                    ((Admin) a).promoteUser(email, userAccessKey);
+                                }else{
+                                    System.out.println("Chave de acesso inválida");
+                                }
                             }else if(option == 4){
                                 System.out.println("Digite o nome para qual deseja alterar");
                                 String newName = input.nextLine();
