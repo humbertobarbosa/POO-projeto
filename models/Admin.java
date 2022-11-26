@@ -31,4 +31,7 @@ public class Admin extends User{
         }
     }
 
+    public String getAccessKey() {
+        return accessKey;
+    }
 }
