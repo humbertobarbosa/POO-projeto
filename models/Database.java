@@ -2,6 +2,7 @@ package models;
 import models.product.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class Database {
     private Database(){
 
         users = new ArrayList<User>();
+        users.add(new Admin("Arthur", "arthur@gmail.com", "123456", new Date(2002, 5, 14), "abc"));
         products = new ArrayList<Product>();
     }
     public static Database getInstance(){
