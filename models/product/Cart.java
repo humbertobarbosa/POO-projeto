@@ -15,7 +15,7 @@ public class Cart implements ICommand {
         float sum = 0;
 
         for (Product cap : this.items) {
-            sum += cap.getCurrentPrince();
+            sum += cap.getCurrentPrice();
         }
 
         return sum;
@@ -54,6 +54,14 @@ public class Cart implements ICommand {
     public void execute() {
         this.closeOrder();
         this.clearCart();
+    }
+
+    public ArrayList<Product> getItems() {
+        return items;
+    }
+
+    public float getFinalPrice() {
+        return finalPrice;
     }
 
 }

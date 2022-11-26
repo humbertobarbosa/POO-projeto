@@ -3,7 +3,6 @@ import models.product.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 
@@ -14,7 +13,7 @@ public class Database {
     private Database(){
 
         users = new ArrayList<User>();
-        users.add(new Admin("Arthur", "arthur@gmail.com", "123456", new Date(2002, 5, 14), "abc"));
+        users.add(new Admin("Arthur", "arthur@gmail.com", "123456", "14/05/2002", "abc"));
         products = new ArrayList<Product>();
     }
     public static Database getInstance(){
@@ -24,9 +23,9 @@ public class Database {
         return instance;
     }
 
-    public void createUser(String name, String email, String password, String repeatPassword, Date birthDate){
+    public void createUser(String name, String email, String password, String repeatPassword, String birthDate){
         if(password.equals(repeatPassword)){
-            if(getUserByEmail(email) != null){
+            if(getUserByEmail(email) == null){
                 Client a = new Client(name, email, password, birthDate);
                 users.add(a);
             }
@@ -66,6 +65,10 @@ public class Database {
     public void promoteUser(String email, String accessKey){
        User a = getUserByEmail(email);
        Admin admin = new Admin(a.getName(), a.getEmail(), a.getPassword(), a.getBirthDate(), accessKey);
+    }
+    
+    public ArrayList<Product> getProducts() {
+        return products;
     }
 
 }

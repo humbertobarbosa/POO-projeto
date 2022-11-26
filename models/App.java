@@ -1,11 +1,13 @@
 package models;
 
 import java.util.Scanner;
+import models.product.*;
 
 public class App {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        Scanner altInput = new Scanner(System.in);
         int option;
         while (true){
             System.out.println("-----CAPTEND-----");
@@ -68,14 +70,29 @@ public class App {
                             System.out.println("[6] - Alterar Senha");
                             System.out.println("[0] - Sair");
                             option = input.nextInt();
+                            Cart cart = new Cart(null);
                             if(option == 1){
-
+                                System.out.println("Digite o ID do produto");
+                                int capId = input.nextInt();
+                                Product cap = Database.getInstance().getProductByID(capId);
+                                cart.addItem(cap);
                             }else if(option == 2){
-
+                                System.out.println("Digite o ID do produto");
+                                int capId = input.nextInt();
+                                cart.removeCap(capId);
                             }else if(option == 3){
-
+                                for (Product c : cart.getItems()) {
+                                    System.out.println(c.getName());
+                                }
                             }else if(option == 4){
-
+                                Pix pix = new Pix();
+                                Boleto boleto = new Boleto();
+                                System.out.println("Deseja pagar no pix ou boleto?");
+                                String op = input.nextLine();
+                                Pagamento pagamento = new Pagamento(boleto);
+                                if (op.equalsIgnoreCase("pix")){
+                                    pagamento.setMetodoPagamento(pix);
+                                } 
                             }else if(option == 5){
                                 System.out.println("Digite o nome para qual deseja alterar");
                                 String newName = input.nextLine();
@@ -99,8 +116,15 @@ public class App {
 
 
             }else if(option == 2){
-                String name = input.nextLine();
-
+                System.out.println("Digite seu nome"); //joao arthur
+                String name = altInput.nextLine();
+                System.out.println("Digite seu email"); //arthur@gmail.com
+                String email = altInput.nextLine();
+                System.out.println("Digite sua senha"); //123456
+                String password = altInput.nextLine();
+                System.out.println("Digite sua data de nascimento"); //14/05/2002
+                String birthDate = altInput.nextLine();
+                Database.getInstance().createUser(name, email, password, password, birthDate);
             }else if(option == 3){
                 break;
             }

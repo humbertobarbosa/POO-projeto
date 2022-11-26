@@ -2,13 +2,12 @@ package models;
 import models.product.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Client extends User{
     private Cart cart;
 
 
-    public Client(String name, String email, String password, Date birthDate){
+    public Client(String name, String email, String password, String birthDate){
         super(name, email, password, birthDate);
         cart = new Cart(new ArrayList<>());
     }

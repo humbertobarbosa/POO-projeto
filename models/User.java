@@ -1,13 +1,11 @@
 package models;
 
-import java.util.Date;
-
 public abstract class User {
     protected String name;
     protected String email;
     protected String password;
-    protected Date birthDate;
-    public User(String name, String email, String password, Date birthDate){
+    protected String birthDate;
+    public User(String name, String email, String password, String birthDate){
         this.name = name;
         this.email = email;
         this.password = password;
@@ -28,7 +26,7 @@ public abstract class User {
         return name;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
